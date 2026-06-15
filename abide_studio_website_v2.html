@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Abide Studio — Premium Website Design</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+--black:#09090b;
+--surface:#111113;
+--surface2:#18181b;
+--border:#27272a;
+--border2:#3f3f46;
+--gold:#c9a96e;
+--gold2:#e8c98a;
+--white:#f4f0e8;
+--muted:#71717a;
+--muted2:#a1a1aa;
+--font-display:'Cormorant Garamond',serif;
+--font-body:'DM Sans',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--white);font-family:var(--font-body);font-weight:300;line-height:1.7;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.4rem 4rem;transition:all .4s}
+nav.scrolled{background:rgba(9,9,11,0.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--font-display);font-size:1.6rem;font-weight:400;color:var(--white);letter-spacing:.04em;text-decoration:none}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;gap:2.2rem;list-style:none}
+.nav-links a{color:var(--muted2);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:color .3s}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{background:var(--gold);color:var(--black);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;padding:.55rem 1.4rem;text-decoration:none;font-weight:500;transition:background .3s}
+.nav-cta:hover{background:var(--gold2)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;padding:8rem 2rem 4rem}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 55% at 50% -5%,rgba(201,169,110,.09) 0%,transparent 65%)}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--border),transparent)}
+.hero-eyebrow{display:flex;align-items:center;gap:1rem;justify-content:center;margin-bottom:2.5rem}
+.hero-line-h{width:40px;height:1px;background:var(--gold);opacity:.5}
+.hero-tag{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.hero h1{font-family:var(--font-display);font-size:clamp(4rem,9vw,8rem);font-weight:300;line-height:1;letter-spacing:-.01em;margin-bottom:.4rem;color:var(--white)}
+.hero h1 em{font-style:italic;color:var(--gold);display:block}
+.hero-sub{font-size:1.05rem;color:var(--muted2);max-width:560px;margin:2rem auto 3rem;line-height:1.85}
+.hero-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-gold{background:var(--gold);color:var(--black);padding:.85rem 2.4rem;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;font-weight:500;transition:all .3s;display:inline-block}
+.btn-gold:hover{background:var(--gold2);transform:translateY(-2px)}
+.btn-outline{border:1px solid var(--border2);color:var(--white);padding:.85rem 2.4rem;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;font-weight:300;transition:all .3s;display:inline-block}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+.hero-features{display:flex;gap:2rem;flex-wrap:wrap;justify-content:center;margin-top:4rem;padding-top:3rem;border-top:1px solid var(--border)}
+.hero-feat{display:flex;align-items:center;gap:.6rem;font-size:.78rem;color:var(--muted2)}
+.feat-dot{width:4px;height:4px;background:var(--gold);border-radius:50%;flex-shrink:0}
+
+/* STATS BAR */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--border)}
+.stat{padding:2.5rem 2rem;text-align:center;border-right:1px solid var(--border);position:relative}
+.stat:last-child{border-right:none}
+.stat-num{font-family:var(--font-display);font-size:3rem;font-weight:300;color:var(--gold);line-height:1}
+.stat-label{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:.5rem}
+
+/* SECTION BASE */
+section{padding:7rem 4rem}
+.sec-tag{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:1.2rem}
+.sec-title{font-family:var(--font-display);font-size:clamp(2.8rem,5vw,4.5rem);font-weight:300;line-height:1.06;color:var(--white);margin-bottom:1.2rem}
+.sec-title em{font-style:italic;color:var(--gold)}
+.sec-sub{font-size:.93rem;color:var(--muted2);max-width:500px;line-height:1.85}
+
+/* SERVICES */
+.services-header{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end;margin-bottom:5rem}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
+.svc{background:var(--black);padding:2.8rem;transition:background .35s;position:relative;overflow:hidden}
+.svc::before{content:'';position:absolute;top:0;left:0;width:2px;height:0;background:var(--gold);transition:height .4s}
+.svc:hover{background:var(--surface)}
+.svc:hover::before{height:100%}
+.svc-num{font-family:var(--font-display);font-size:.9rem;color:var(--gold);margin-bottom:1.8rem;opacity:.55;letter-spacing:.1em}
+.svc-title{font-family:var(--font-display);font-size:1.55rem;font-weight:400;color:var(--white);margin-bottom:.8rem}
+.svc-desc{font-size:.83rem;color:var(--muted2);line-height:1.85}
+.svc-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.6rem}
+.tag{font-size:.62rem;letter-spacing:.09em;text-transform:uppercase;border:1px solid var(--border2);color:var(--muted);padding:.28rem .65rem}
+
+/* ECOMMERCE FEATURES */
+.ecom{background:var(--surface)}
+.ecom-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);margin-top:4rem}
+.ecom-card{background:var(--surface);padding:2.5rem 2rem;text-align:center}
+.ecom-icon{width:3.5rem;height:3.5rem;border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;color:var(--gold);font-size:1.3rem}
+.ecom-title{font-family:var(--font-display);font-size:1.2rem;color:var(--white);margin-bottom:.7rem}
+.ecom-desc{font-size:.8rem;color:var(--muted2);line-height:1.8}
+
+/* PLATFORMS */
+.platforms-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-top:4rem}
+.platform{background:var(--black);padding:2.8rem;transition:background .3s}
+.platform:hover{background:var(--surface)}
+.platform.featured{background:var(--surface2)}
+.platform-name{font-family:var(--font-display);font-size:1.7rem;font-weight:400;color:var(--white);margin-bottom:.4rem}
+.platform-desc{font-size:.8rem;color:var(--gold);margin-bottom:1.8rem;letter-spacing:.05em}
+.platform-list{list-style:none}
+.platform-list li{font-size:.83rem;color:var(--muted2);padding:.45rem 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.7rem}
+.platform-list li::before{content:'';width:4px;height:4px;background:var(--gold);border-radius:50%;flex-shrink:0}
+
+/* PROCESS */
+.process{background:var(--surface)}
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:5rem;position:relative}
+.process-grid::after{content:'';position:absolute;top:2.5rem;left:12.5%;right:12.5%;height:1px;background:linear-gradient(to right,transparent,var(--border2),var(--border2),transparent)}
+.proc-step{text-align:center;padding:0 1.5rem}
+.proc-circle{width:5rem;height:5rem;border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;margin:0 auto 2.2rem;background:var(--surface);position:relative;z-index:1;transition:border-color .3s}
+.proc-step:hover .proc-circle{border-color:var(--gold)}
+.proc-num{font-family:var(--font-display);font-size:1.3rem;color:var(--gold);font-weight:300}
+.proc-title{font-family:var(--font-display);font-size:1.15rem;color:var(--white);margin-bottom:.6rem}
+.proc-desc{font-size:.8rem;color:var(--muted2);line-height:1.8}
+
+/* PRICING */
+.pricing-tabs{display:flex;gap:0;border:1px solid var(--border);width:fit-content;margin:0 auto 4rem}
+.ptab{padding:.65rem 2rem;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .3s;background:transparent;border:none;color:var(--muted2);font-family:var(--font-body)}
+.ptab.active{background:var(--gold);color:var(--black);font-weight:500}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
+.price-card{background:var(--black);padding:2.8rem;position:relative;transition:background .3s}
+.price-card:hover{background:var(--surface)}
+.price-card.featured{background:var(--surface2)}
+.price-badge{position:absolute;top:0;right:2rem;background:var(--gold);color:var(--black);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;padding:.3rem 1rem;font-weight:500}
+.price-tier{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
+.price-name{font-family:var(--font-display);font-size:1.8rem;font-weight:400;color:var(--white);margin-bottom:.4rem}
+.price-desc{font-size:.8rem;color:var(--muted2);margin-bottom:1.8rem;line-height:1.6}
+.price-amount{font-family:var(--font-display);font-size:3rem;font-weight:300;color:var(--white);line-height:1}
+.price-amount sup{font-size:1.2rem;vertical-align:top;margin-top:.5rem;color:var(--gold)}
+.price-period{font-size:.78rem;color:var(--muted);margin-top:.3rem;margin-bottom:2rem}
+.price-features{list-style:none;margin-bottom:2.5rem}
+.price-features li{font-size:.82rem;color:var(--muted2);padding:.5rem 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.75rem}
+.price-features li::before{content:'';width:4px;height:4px;background:var(--gold);border-radius:50%;flex-shrink:0}
+.price-btn{display:block;text-align:center;border:1px solid var(--border2);color:var(--white);padding:.85rem;font-size:.73rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:all .3s;font-weight:400}
+.price-btn:hover,.price-card.featured .price-btn{background:var(--gold);color:var(--black);border-color:var(--gold)}
+
+/* ABOUT */
+.about-wrap{display:grid;grid-template-columns:1fr 1fr;gap:7rem;align-items:center}
+.about-visual{background:var(--surface);border:1px solid var(--border);height:420px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.about-bg-text{position:absolute;font-family:var(--font-display);font-size:9rem;font-weight:300;color:rgba(201,169,110,.04);letter-spacing:.2em;user-select:none}
+.about-card{position:relative;z-index:1;text-align:center}
+.about-avatar{width:88px;height:88px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;margin:0 auto 1.2rem;font-family:var(--font-display);font-size:2.2rem;color:var(--black)}
+.about-name{font-family:var(--font-display);font-size:1.4rem;color:var(--white)}
+.about-role{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-top:.3rem}
+.about-chips{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.5rem;justify-content:center}
+.chip{font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--border2);color:var(--muted2);padding:.3rem .7rem}
+.about-text p{font-size:.88rem;color:var(--muted2);line-height:1.95;margin-bottom:1.2rem}
+.about-vals{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-top:2rem}
+.val{border-left:2px solid var(--gold);padding:.5rem .9rem}
+.val-title{font-size:.78rem;color:var(--white);font-weight:500;margin-bottom:.2rem}
+.val-desc{font-size:.72rem;color:var(--muted2)}
+
+/* CONTACT */
+.contact{background:var(--surface);text-align:center}
+.contact-inner{max-width:640px;margin:0 auto}
+.contact-big{font-family:var(--font-display);font-size:clamp(3.5rem,7vw,6rem);font-weight:300;color:var(--white);line-height:1.02;margin-bottom:1.5rem}
+.contact-big em{font-style:italic;color:var(--gold)}
+.contact-sub{color:var(--muted2);margin-bottom:3rem;font-size:.93rem}
+.contact-form{display:flex;flex-direction:column;gap:.9rem;text-align:left}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.form-label{font-size:.63rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted2);display:block;margin-bottom:.4rem}
+.form-input{width:100%;background:var(--black);border:1px solid var(--border);color:var(--white);padding:.85rem 1rem;font-family:var(--font-body);font-size:.85rem;font-weight:300;outline:none;transition:border-color .3s;-webkit-appearance:none}
+.form-input:focus{border-color:var(--gold)}
+.form-input::placeholder{color:var(--muted)}
+textarea.form-input{min-height:110px;resize:vertical}
+.form-submit{background:var(--gold);color:var(--black);border:none;padding:1rem;font-family:var(--font-body);font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;font-weight:500;cursor:pointer;transition:background .3s;margin-top:.4rem;width:100%}
+.form-submit:hover{background:var(--gold2)}
+
+/* FOOTER */
+footer{background:var(--black);border-top:1px solid var(--border);padding:2.5rem 4rem}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.footer-logo{font-family:var(--font-display);font-size:1.2rem;color:var(--white)}
+.footer-logo span{color:var(--gold)}
+.footer-links{display:flex;gap:2rem;list-style:none}
+.footer-links a{font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .3s}
+.footer-links a:hover{color:var(--gold)}
+.footer-copy{font-size:.72rem;color:var(--muted)}
+
+/* DIVIDER */
+.divider{width:100%;height:1px;background:linear-gradient(to right,transparent,var(--border),transparent)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.fade-up{opacity:0;animation:fadeUp .75s ease forwards}
+.d1{animation-delay:.1s}.d2{animation-delay:.2s}.d3{animation-delay:.3s}.d4{animation-delay:.4s}.d5{animation-delay:.55s}
+
+@media(max-width:860px){
+nav{padding:1.2rem 1.5rem}
+.nav-links{display:none}
+section{padding:5rem 1.5rem}
+.stats{grid-template-columns:repeat(2,1fr)}
+.services-header{grid-template-columns:1fr}
+.services-grid,.ecom-grid,.platforms-grid,.pricing-grid{grid-template-columns:1fr}
+.process-grid{grid-template-columns:1fr 1fr;gap:2.5rem}
+.process-grid::after{display:none}
+.about-wrap{grid-template-columns:1fr}
+.form-row{grid-template-columns:1fr}
+.footer-inner{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">abide<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Website Design</a></li>
+    <li><a href="#ecommerce">E-commerce</a></li>
+    <li><a href="#portfolio">Projects</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Talk to Us</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-eyebrow fade-up">
+    <div class="hero-line-h"></div>
+    <span class="hero-tag">Premium Web Design Agency · India</span>
+    <div class="hero-line-h"></div>
+  </div>
+  <h1 class="fade-up d1">Website<em>Design</em></h1>
+  <p class="hero-sub fade-up d2">We create stunning, conversion-focused websites that represent your brand beautifully and drive real business results.</p>
+  <div class="hero-actions fade-up d3">
+    <a href="#contact" class="btn-gold">Start Your Project →</a>
+    <a href="#portfolio" class="btn-outline">View Our Work</a>
+  </div>
+  <div class="hero-features fade-up d4">
+    <div class="hero-feat"><div class="feat-dot"></div>Custom Design Strategy</div>
+    <div class="hero-feat"><div class="feat-dot"></div>Mobile-First Approach</div>
+    <div class="hero-feat"><div class="feat-dot"></div>Conversion Optimization</div>
+    <div class="hero-feat"><div class="feat-dot"></div>Brand Integration</div>
+    <div class="hero-feat"><div class="feat-dot"></div>SEO-Ready Structure</div>
+    <div class="hero-feat"><div class="feat-dot"></div>Performance Focused</div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat"><div class="stat-num">50+</div><div class="stat-label">Projects Delivered</div></div>
+  <div class="stat"><div class="stat-num">3×</div><div class="stat-label">Avg. Conversion Lift</div></div>
+  <div class="stat"><div class="stat-num">98%</div><div class="stat-label">Client Satisfaction</div></div>
+  <div class="stat"><div class="stat-num">24h</div><div class="stat-label">Response Time</div></div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header">
+    <div>
+      <span class="sec-tag">What We Do</span>
+      <h2 class="sec-title">Shopify &amp; Web<br><em>Services</em></h2>
+    </div>
+    <p class="sec-sub">From custom Shopify builds to full-scale web design — every project is crafted with strategy, precision, and a clear focus on results.</p>
+  </div>
+  <div class="services-grid">
+    <div class="svc">
+      <div class="svc-num">01</div>
+      <div class="svc-title">Shopify Development</div>
+      <div class="svc-desc">Custom Shopify stores built from the ground up — architected for speed, conversion, and long-term scale.</div>
+      <div class="svc-tags"><span class="tag">Custom Theme</span><span class="tag">Shopify Plus</span><span class="tag">Liquid</span></div>
+    </div>
+    <div class="svc">
+      <div class="svc-num">02</div>
+      <div class="svc-title">Website Design</div>
+      <div class="svc-desc">Stunning, conversion-focused websites that represent your brand beautifully and drive real business results.</div>
+      <div class="svc-tags"><span class="tag">UI/UX</span><span class="tag">Mobile-First</span><span class="tag">CRO</span></div>
+    </div>
+    <div class="svc">
+      <div class="svc-num">03</div>
+      <div class="svc-title">E-commerce Builds</div>
+      <div class="svc-desc">End-to-end e-commerce solutions on Shopify and WooCommerce — from product setup to checkout optimization.</div>
+      <div class="svc-tags"><span class="tag">Shopify</span><span class="tag">WooCommerce</span><span class="tag">Payments</span></div>
+    </div>
+    <div class="svc">
+      <div class="svc-num">04</div>
+      <div class="svc-title">Theme Customization</div>
+      <div class="svc-desc">Transform any Shopify theme into a brand-aligned, conversion-optimized storefront that stands out from the crowd.</div>
+      <div class="svc-tags"><span class="tag">Dawn</span><span class="tag">Prestige</span><span class="tag">Impulse</span></div>
+    </div>
+    <div class="svc">
+      <div class="svc-num">05</div>
+      <div class="svc-title">Performance &amp; SEO</div>
+      <div class="svc-desc">Data-driven optimization for speed, SEO-ready structure, and higher conversion rates across every device.</div>
+      <div class="svc-tags"><span class="tag">Core Web Vitals</span><span class="tag">SEO</span><span class="tag">Analytics</span></div>
+    </div>
+    <div class="svc">
+      <div class="svc-num">06</div>
+      <div class="svc-title">Maintenance &amp; Support</div>
+      <div class="svc-desc">Ongoing support, updates, and proactive monitoring so your store stays fast, secure, and always on.</div>
+      <div class="svc-tags"><span class="tag">Monthly Retainer</span><span class="tag">Priority Support</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ECOMMERCE FEATURES -->
+<section class="ecom" id="ecommerce">
+  <span class="sec-tag">E-commerce Capabilities</span>
+  <h2 class="sec-title">Everything Your Store<br><em>Needs to Succeed</em></h2>
+  <p class="sec-sub">We build e-commerce experiences with every technical foundation your business needs to sell confidently at scale.</p>
+  <div class="ecom-grid">
+    <div class="ecom-card">
+      <div class="ecom-icon">&#128722;</div>
+      <div class="ecom-title">Product Management</div>
+      <div class="ecom-desc">Easy-to-use product catalog with variants, inventory tracking, and bulk operations built in.</div>
+    </div>
+    <div class="ecom-card">
+      <div class="ecom-icon">&#128179;</div>
+      <div class="ecom-title">Secure Payments</div>
+      <div class="ecom-desc">Multiple payment gateways with fraud protection and PCI compliance — ready out of the box.</div>
+    </div>
+    <div class="ecom-card">
+      <div class="ecom-icon">&#128666;</div>
+      <div class="ecom-title">Shipping Integration</div>
+      <div class="ecom-desc">Real-time shipping rates and tracking with major carriers worldwide, seamlessly integrated.</div>
+    </div>
+    <div class="ecom-card">
+      <div class="ecom-icon">&#128737;</div>
+      <div class="ecom-title">Security &amp; Compliance</div>
+      <div class="ecom-desc">SSL certificates, data encryption, and GDPR compliance built into every store we deliver.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PLATFORMS -->
+<section id="platforms">
+  <span class="sec-tag">Choose Your Platform</span>
+  <h2 class="sec-title">We Build on the<br><em>Right Foundation</em></h2>
+  <p class="sec-sub">Whether you're starting out or scaling up, we'll recommend and build on the platform that fits your business best.</p>
+  <div class="platforms-grid">
+    <div class="platform featured">
+      <div class="price-badge" style="top:1.5rem;right:1.5rem;position:absolute">Recommended</div>
+      <div class="platform-name">Shopify</div>
+      <div class="platform-desc">Perfect for small to medium businesses</div>
+      <ul class="platform-list">
+        <li>Easy to use</li>
+        <li>App ecosystem</li>
+        <li>Built-in payments</li>
+        <li>Mobile responsive</li>
+      </ul>
+    </div>
+    <div class="platform">
+      <div class="platform-name">WooCommerce</div>
+      <div class="platform-desc">Flexible WordPress-based solution</div>
+      <ul class="platform-list">
+        <li>Full customization</li>
+        <li>SEO friendly</li>
+        <li>Cost effective</li>
+        <li>Plugin ecosystem</li>
+      </ul>
+    </div>
+    <div class="platform">
+      <div class="platform-name">Custom Solution</div>
+      <div class="platform-desc">Tailored for enterprise needs</div>
+      <ul class="platform-list">
+        <li>Complete control</li>
+        <li>Scalable</li>
+        <li>Unique features</li>
+        <li>Performance optimized</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <span class="sec-tag">How We Work</span>
+  <h2 class="sec-title">Our <em>Process</em></h2>
+  <p class="sec-sub">A structured, transparent workflow — so you always know where your project stands.</p>
+  <div class="process-grid">
+    <div class="proc-step">
+      <div class="proc-circle"><span class="proc-num">01</span></div>
+      <div class="proc-title">Discovery &amp; Strategy</div>
+      <div class="proc-desc">We understand your business goals and target audience to create the perfect design strategy.</div>
+    </div>
+    <div class="proc-step">
+      <div class="proc-circle"><span class="proc-num">02</span></div>
+      <div class="proc-title">Design &amp; Prototyping</div>
+      <div class="proc-desc">Create wireframes and high-fidelity designs that align with your brand and objectives.</div>
+    </div>
+    <div class="proc-step">
+      <div class="proc-circle"><span class="proc-num">03</span></div>
+      <div class="proc-title">Development &amp; Testing</div>
+      <div class="proc-desc">Build your website with clean code, test thoroughly, and optimize for performance.</div>
+    </div>
+    <div class="proc-step">
+      <div class="proc-circle"><span class="proc-num">04</span></div>
+      <div class="proc-title">Launch &amp; Support</div>
+      <div class="proc-desc">Deploy your website and provide ongoing support to ensure continued success.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <span class="sec-tag">Investment</span>
+  <h2 class="sec-title" style="text-align:center">Design <em>Packages</em></h2>
+  <p class="sec-sub" style="text-align:center;margin:0 auto 1rem">Transparent pricing built around your business goals — with our signature design process and ongoing support.</p>
+  <div style="text-align:center;margin-bottom:3rem">
+    <div class="pricing-tabs">
+      <button class="ptab active" onclick="switchTab('website',this)">Website Design</button>
+      <button class="ptab" onclick="switchTab('ecom',this)">E-commerce</button>
+    </div>
+  </div>
+
+  <div id="pricing-website" class="pricing-grid">
+    <div class="price-card">
+      <div class="price-tier">Starter</div>
+      <div class="price-name">Gold Pack</div>
+      <div class="price-desc">High-converting landing pages that turn visitors into customers</div>
+      <div class="price-amount"><sup>₹</sup>30,000</div>
+      <div class="price-period">One-time project</div>
+      <ul class="price-features">
+        <li>Custom Design</li>
+        <li>Mobile Responsive</li>
+        <li>A/B Testing Ready</li>
+        <li>Analytics Integration</li>
+      </ul>
+      <a href="#contact" class="price-btn">Get Started →</a>
+    </div>
+    <div class="price-card featured">
+      <div class="price-badge">Most Popular</div>
+      <div class="price-tier">Growth</div>
+      <div class="price-name">Multi-Page Website</div>
+      <div class="price-desc">Complete business websites with multiple pages and sections</div>
+      <div class="price-amount"><sup>₹</sup>45,000</div>
+      <div class="price-period">One-time project</div>
+      <ul class="price-features">
+        <li>Up to 10 Pages</li>
+        <li>CMS Integration</li>
+        <li>Contact Forms</li>
+        <li>SEO Optimization</li>
+      </ul>
+      <a href="#contact" class="price-btn">Get Started →</a>
+    </div>
+    <div class="price-card">
+      <div class="price-tier">Enterprise</div>
+      <div class="price-name">Enterprise Solution</div>
+      <div class="price-desc">Large-scale websites with advanced functionality and integrations</div>
+      <div class="price-amount" style="font-size:2.2rem">Custom</div>
+      <div class="price-period">Scoped to your needs</div>
+      <ul class="price-features">
+        <li>Unlimited Pages</li>
+        <li>Custom Features</li>
+        <li>API Integrations</li>
+        <li>Priority Support</li>
+      </ul>
+      <a href="#contact" class="price-btn">Talk to Us →</a>
+    </div>
+  </div>
+
+  <div id="pricing-ecom" class="pricing-grid" style="display:none">
+    <div class="price-card">
+      <div class="price-tier">Starter</div>
+      <div class="price-name">Shopify Starter</div>
+      <div class="price-desc">Launch your Shopify store fast with a clean, conversion-ready design</div>
+      <div class="price-amount"><sup>₹</sup>49,999</div>
+      <div class="price-period">One-time project</div>
+      <ul class="price-features">
+        <li>Theme Customization</li>
+        <li>Up to 5 Pages</li>
+        <li>Mobile Optimization</li>
+        <li>Basic App Integrations</li>
+        <li>14-day Support</li>
+      </ul>
+      <a href="#contact" class="price-btn">Get Started →</a>
+    </div>
+    <div class="price-card featured">
+      <div class="price-badge">Most Popular</div>
+      <div class="price-tier">Growth</div>
+      <div class="price-name">Shopify Growth</div>
+      <div class="price-desc">Full custom Shopify store with CRO-focused design and integrations</div>
+      <div class="price-amount"><sup>₹</sup>1,19,999</div>
+      <div class="price-period">One-time project</div>
+      <ul class="price-features">
+        <li>Custom Theme Build</li>
+        <li>Up to 12 Pages</li>
+        <li>CRO-Focused UX</li>
+        <li>Full App Integrations</li>
+        <li>Performance Optimization</li>
+        <li>30-day Support</li>
+      </ul>
+      <a href="#contact" class="price-btn">Get Started →</a>
+    </div>
+    <div class="price-card">
+      <div class="price-tier">Retainer</div>
+      <div class="price-name">Monthly Care</div>
+      <div class="price-desc">Ongoing store management, updates, and performance monitoring</div>
+      <div class="price-amount"><sup>₹</sup>24,999</div>
+      <div class="price-period">Per month</div>
+      <ul class="price-features">
+        <li>Monthly Design Updates</li>
+        <li>Performance Monitoring</li>
+        <li>Priority Support</li>
+        <li>CRO Recommendations</li>
+        <li>Dedicated Manager</li>
+      </ul>
+      <a href="#contact" class="price-btn">Learn More →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section style="background:var(--surface)" id="about">
+  <div class="about-wrap">
+    <div class="about-visual">
+      <div class="about-bg-text">ABIDE</div>
+      <div class="about-card">
+        <div class="about-avatar">S</div>
+        <div class="about-name">Sharon</div>
+        <div class="about-role">Co-Founder, Abide Studio</div>
+        <div class="about-chips">
+          <span class="chip">Shopify Dev</span>
+          <span class="chip">Data Analytics</span>
+          <span class="chip">CRO</span>
+          <span class="chip">Gen AI</span>
+          <span class="chip">Power BI</span>
+          <span class="chip">Python</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <span class="sec-tag">About Us</span>
+      <h2 class="sec-title">Strategists Who<br><em>Actually Build</em></h2>
+      <div class="about-text">
+        <p>Abide Studio is a premium web design and Shopify agency based in India. We help D2C brands, B2B companies, and founders build websites that are beautiful, fast, and built to convert.</p>
+        <p>What sets us apart is a data-first mindset. We combine design strategy, clean development, and analytics to deliver stores and websites that don't just look great — they perform measurably better.</p>
+        <p>Every client gets direct access to our senior team, transparent communication, and a partner who is genuinely invested in your growth.</p>
+      </div>
+      <div class="about-vals">
+        <div class="val"><div class="val-title">Results-Driven</div><div class="val-desc">Every decision tied to business outcomes</div></div>
+        <div class="val"><div class="val-title">Transparent</div><div class="val-desc">Clear timelines, no surprises</div></div>
+        <div class="val"><div class="val-title">Strategic</div><div class="val-desc">Design with a conversion-first lens</div></div>
+        <div class="val"><div class="val-title">Reliable</div><div class="val-desc">We deliver what we promise</div></div>
+      </div>
+      <a href="#contact" class="btn-gold" style="margin-top:2.5rem">Work With Us →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <span class="sec-tag" style="display:block;margin-bottom:1rem">Get In Touch</span>
+    <h2 class="contact-big">Let's Build<br><em>Something Great</em></h2>
+    <p class="contact-sub">Tell us about your project. We'll get back to you within 24 hours.</p>
+    <div class="contact-form">
+      <div class="form-row">
+        <div><label class="form-label">Your Name</label><input class="form-input" type="text" placeholder="Jane Smith"/></div>
+        <div><label class="form-label">Email Address</label><input class="form-input" type="email" placeholder="jane@brand.com"/></div>
+      </div>
+      <div class="form-row">
+        <div><label class="form-label">Brand / Company</label><input class="form-input" type="text" placeholder="Your Brand Name"/></div>
+        <div>
+          <label class="form-label">Service Needed</label>
+          <select class="form-input" style="cursor:pointer">
+            <option value="" disabled selected>Select a service</option>
+            <option>Shopify Development</option>
+            <option>Website Design — Gold Pack (₹30,000)</option>
+            <option>Website Design — Multi-Page (₹45,000)</option>
+            <option>Website Design — Enterprise</option>
+            <option>E-commerce Store</option>
+            <option>Monthly Retainer</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+      </div>
+      <div><label class="form-label">Tell Us About Your Project</label><textarea class="form-input" placeholder="What are you building? What's the main challenge you want to solve?"></textarea></div>
+      <button class="form-submit" onclick="alert('Thank you! We\'ll be in touch within 24 hours.')">Send Inquiry →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">abide<span>.</span>studio</div>
+    <ul class="footer-links">
+      <li><a href="#services">Website Design</a></li>
+      <li><a href="#ecommerce">E-commerce</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="footer-copy">© 2025 Abide Studio. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>60);
+});
+function switchTab(tab, el){
+  document.querySelectorAll('.ptab').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('pricing-website').style.display = tab==='website'?'grid':'none';
+  document.getElementById('pricing-ecom').style.display = tab==='ecom'?'grid':'none';
+}
+</script>
+</body>
+</html>
